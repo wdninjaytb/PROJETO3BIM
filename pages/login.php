@@ -1,7 +1,7 @@
 <div class="login">
     <div class="card shadow">
         <div class="card-header text-center">
-            <img src="../imgs/logoKaeru.png" alt="Logo Kaeru">
+            <img src="./imgs/logoKaeru.png" alt="Logo Kaeru">
         </div>
         <div class="card-body">
             <form name="formLogin" method="post" data-parsley-validate>

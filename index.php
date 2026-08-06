@@ -1,8 +1,6 @@
     <?php
         session_start();
 
-        session_destroy();
-
         require "./config.php";
 
     ?>
@@ -147,7 +145,7 @@
                                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                                     </li>
                                 </ul>
-                                <a href="logout.php">Sair</a>
+                                <a href="pages/logout.php">Sair</a>
                                 </div>
                                 
                             </div>
