@@ -13,6 +13,8 @@
         <link rel="icon" href="imgs/IconKaeru.png">
         <title>Sistema Administrativo - Kaeru</title>
 
+        <base href="http://localhost:8080/PROJETO3BIM/">
+
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,9 +74,11 @@
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 echo "<script>mensagem('E-Mail inválido', 'error');</script>";
+                require "pages/login.php";
                 exit;
             } else if (strlen($senha) < 4 || empty($senha)) {
                 echo "<script>mensagem('Senha inválida', 'error');</script>";
+                require "pages/login.php";
                 exit;
             }
 
@@ -91,9 +95,11 @@
 
             if(empty($dadosLogin->id)) {
                 echo "<script>mensagem('Login inválido', 'error');</script>";
+                require "pages/login.php";
                 exit;
             } else if ($senha != $dadosLogin->senha) {
                 echo "<script>mensagem('Login inválido', 'error');</script>";
+                require "pages/login.php";
                 exit;
         }
 
@@ -125,33 +131,76 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                    <a class="nav-link" href="index.php">Home</a>
                                     </li>
+
                                     <li class="nav-item">
-                                    <a class="nav-link" href="#">Link</a>
+                                    <a class="nav-link" href="cadastrar/categoria">Categoria</a>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Dropdown
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                    </li>
+
                                     <li class="nav-item">
-                                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                                    <a class="nav-link" href="cadastrar/estoque">Estoque</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="cadastrar/produto">Produto</a>
                                     </li>
                                 </ul>
-                                <a href="pages/logout.php">Sair</a>
-                                </div>
-                                
+                                    <div class="dropdown">
+                                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Olá <?= $_SESSION["kaeru"]["nome"] ?>
+                                        </button>
+                                 <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="sair">Sair</a></li>
+                                </ul>
                             </div>
-                            </nav>
-            <?php
-        }
-    ?>
+                        </div>
+                                
+                    </div>
+                </nav>
+                <?php
+$param = explode("/", $_GET["param"] ?? "");
+
+
+$pasta = $param[0] ?? "";
+$arquivo = $param[1] ?? "";
+
+
+    if ($pasta == "") {
+        echo "<div class='container mt-4'>
+            <h2>Bem-vindo ao Sistema Administrativo Kaeru</h2>
+          </div>";
+    }
+
+    else if ($pasta == "cadastrar") {
+
+    $page = true;
+
+    $pagina = "cadastrar/{$arquivo}.php";
+
+    if (file_exists($pagina)) {
+        require $pagina;
+    } else {
+        echo "<div class='container mt-4'>
+                <div class='alert alert-danger'>
+                    Página não encontrada.
+                </div>
+              </div>";
+    }
+    }
+                    else if ($pasta == "sair") {
+                require "pages/sair.php";
+            }
+            else {
+                echo "<div class='container mt-4'>
+                    <div class='alert alert-danger'>
+                        Página não encontrada.
+                    </div>
+                </div>";
+            }
+        ?>
+                <?php
+            }
+        ?>
     </body>
     </html>
