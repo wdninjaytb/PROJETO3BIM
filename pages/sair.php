@@ -1,5 +1,7 @@
 <?php
-    if (!isset($page)) exit;
 
-    unset($_SESSION["kaeru"]);
-    echo"<script>location.href-'index.php'</script>";
+session_unset();
+session_destroy();
+
+echo "<script>location.href='index.php';</script>";
+exit;

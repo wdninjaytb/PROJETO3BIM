@@ -1,8 +1,4 @@
-body {
-    background-color: #ccc;
-    font: 16px Inter, Arial;
-    color: #222;
-}
+
 
 .login {
     width: 400px;
@@ -47,23 +43,47 @@ html, body {
 }
 
 body {
-    min-height: 100vh;
+     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #ccc;
+    font: 16px Inter, Arial;
+    color: #222;
 }
 
 .conteudo {
     flex: 1;
+    display: flex;
+    align-items: center;
 }
 
+.conteudo > .container {
+    width: 100%;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.conteudo .card {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
 .menu-secao {
     margin-top: 30px;
 }
 
-
 .card-menu {
     border: 1px solid black !important;
     border-radius: 15px !important;
+}
+
+.card-header {
+    text-align: center;
+}
+.card-body {
+    text-align: left;
+    padding: 30px 20px;
 }
 
 .form {

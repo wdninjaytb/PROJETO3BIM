@@ -2,6 +2,7 @@
         session_start();
 
         require "./config.php";
+        require "salvar/functions.php"
 
     ?>
 
@@ -60,15 +61,11 @@
     </head>
     <body>
     <?php
-        //verificar se está logado e se está sendo enviado dados - verificação dos dados
-        //verificar se estar logado - mostro a tela de login
-        //se está logado - mostrar a homepage
+
 
         
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            //verificação se user e senha são válidos
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && ($_POST["acao"] ?? "") == "login") {
 
-            //recuperar as variaveis email e senha
             $email = trim($_POST["email"] ?? NULL);
             $senha = trim($_POST["senha"] ?? NULL);
 
@@ -103,22 +100,21 @@
                 exit;
         }
 
-            // registrar a sessao
 
             $_SESSION["kaeru"] = array(
                 "id" => $dadosLogin->id,
                 "nome" => $dadosLogin->nome
             );
 
-            //redirecionar a página
             echo "<script>location.href='index.php';</script>";
 
 
         } else if (!isset($_SESSION["kaeru"])) {
-            //tela de login
+
             require "pages/login.php";
+
         } else {
-            //mostrar tela do sistema interno
+
             ?>
                     <nav class="navbar navbar-expand-lg bg-body-tertiary">
                             <div class="container-fluid">
@@ -158,12 +154,13 @@
                                 
                     </div>
                 </nav>
+                <main class="conteudo">
                 <?php
-$param = explode("/", $_GET["param"] ?? "");
+                $param = explode("/", $_GET["param"] ?? "");
 
 
-$pasta = $param[0] ?? "";
-$arquivo = $param[1] ?? "";
+                $pasta = $param[0] ?? "";
+                $arquivo = $param[1] ?? "";
 
 
     if ($pasta == "") {
@@ -181,23 +178,36 @@ $arquivo = $param[1] ?? "";
     if (file_exists($pagina)) {
         require $pagina;
     } else {
-        echo "<div class='container mt-4'>
-                <div class='alert alert-danger'>
-                    Página não encontrada.
-                </div>
-              </div>";
+        require "pages/erro.php";
+    }
+    
+    } else if ($pasta == "salvar") {
+        
+    $page = true;
+
+    $pagina = "salvar/{$arquivo}.php";
+
+    if (file_exists($pagina)) {
+        require $pagina;
+    } else {
+     require "pages/erro.php";
     }
     }
-                    else if ($pasta == "sair") {
-                require "pages/sair.php";
+    
+    else if ($pasta == "sair") {
+        require "pages/sair.php";
             }
-            else {
-                echo "<div class='container mt-4'>
-                    <div class='alert alert-danger'>
-                        Página não encontrada.
-                    </div>
-                </div>";
-            }
+
+            
+
+      else {
+            require "pages/erro.php";
+           }
+        ?>
+        </main>
+
+        <?php
+            include "include/footer.php"
         ?>
                 <?php
             }
