@@ -7,7 +7,7 @@ if (!isset($page)) exit;
 
         <div class="card-header">
             <div class="float-start">
-                <h2>Cadastro de Produtos</h2>
+                <h2>Cadastro de Produto</h2>
             </div>
 
             <div class="float-end">

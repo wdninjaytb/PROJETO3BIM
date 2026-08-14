@@ -212,5 +212,7 @@
                 <?php
             }
         ?>
+
+    <script src="dist/produtos.js"></script>
     </body>
     </html>
