@@ -161,6 +161,7 @@
 
                 $pasta = $param[0] ?? "";
                 $arquivo = $param[1] ?? "";
+                $id = $param[2] ?? NULL;
 
 
     if ($pasta == "") {
@@ -193,6 +194,32 @@
      require "pages/erro.php";
     }
     }
+    
+    else if ($pasta == "listar") {
+
+    $page = true;
+
+    $pagina = "listar/{$arquivo}.php";
+
+    if (file_exists($pagina)) {
+        require $pagina;
+    } else {
+        require "pages/erro.php";
+    }
+}
+
+    else if ($pasta == "excluir") {
+
+    $page = true;
+
+    $pagina = "excluir/{$arquivo}.php";
+
+    if (file_exists($pagina)) {
+        require $pagina;
+    } else {
+        require "pages/erro.php";
+    }
+}
     
     else if ($pasta == "sair") {
         require "pages/sair.php";

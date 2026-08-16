@@ -1,8 +1,20 @@
 <?php
-if (!isset($page)) exit;
+    if (!isset($page)) exit;
+
+    $dadosEstoque = null;
+
+    if (!empty($id)) {
+        $sqlEstoque = "select id, produto_id, quantidade from estoque where id = :id limit 1";
+        $consultaEstoque = $pdo->prepare($sqlEstoque);
+        $consultaEstoque->bindParam(":id", $id);
+        $consultaEstoque->execute();
+
+        $dadosEstoque = $consultaEstoque->fetch(PDO::FETCH_OBJ);
+    }
+    
 ?>
 
-<div class="container pt-5 pb-5 mt-5">
+<div class="container cadastro-pequeno">
     <div class="card shadow">
 
         <div class="card-header">
@@ -29,7 +41,7 @@ if (!isset($page)) exit;
 
                     <div class="col-12 col-md-1">
                         <label for="id">ID:</label>
-                        <input type="number" name="id" id="id" readonly class="form-control">
+                        <input type="number" name="id" id="id" readonly class="form-control" value="<?= $dadosEstoque->id ?? "" ?>"    >
                     </div>
 
                     <div class="col-12 col-md-5">
@@ -52,7 +64,9 @@ if (!isset($page)) exit;
                             foreach ($dadosProdutos as $produto) {
                             ?>
 
-                                <option value="<?= $produto->id ?>">
+                                <option value="<?= $produto->id ?>"
+                                <?= ($dadosEstoque->produto_id ?? "") == $produto->id ? "selected" : "" ?>
+                            >
                                     <?= $produto->nome ?>
                                 </option>
 
@@ -68,7 +82,8 @@ if (!isset($page)) exit;
                     <div class="col-12 col-md-3">
                         <label for="qntd">Quantidade em Estoque:</label>
 
-                        <input type="number" name="qntd" id="qntd" class="form-control" min="0" required data-parsley-required-message="Preencha esse campo">
+                        <input type="number" name="qntd" id="qntd" class="form-control" min="0" required data-parsley-required-message="Preencha esse campo"
+                        value="<?= $dadosEstoque->quantidade ?? "" ?>">
                     </div>
 
                 </div>
@@ -76,7 +91,7 @@ if (!isset($page)) exit;
 
              <div class="row mt-3">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success float-end">
                         Salvar
                     </button>
             </div>

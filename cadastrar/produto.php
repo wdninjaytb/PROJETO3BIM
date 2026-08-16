@@ -1,8 +1,23 @@
 <?php
 if (!isset($page)) exit;
+
+if (!empty($id)) {
+    $sql = "select * from produto where id = :id limit 1";
+    $consulta = $pdo->prepare($sql);
+    $consulta->bindParam(":id", $id);
+    $consulta->execute();
+
+    $dados = $consulta->fetch(PDO::FETCH_OBJ);
+}
+
+    $categoria_id = $dados->categoria_id ?? NULL;
+    $nome = $dados->nome ?? NULL;
+    $descricao = $dados->descricao ?? NULL;
+    $preco = $dados->preco ?? NULL;
+    $marca = $dados->marca ?? NULL;
 ?>
 
-<div class="container pt-5 pb-5 mt-5">
+<div class="container">
     <div class="card shadow">
 
         <div class="card-header">
@@ -11,11 +26,11 @@ if (!isset($page)) exit;
             </div>
 
             <div class="float-end">
-                <a href="cadastrar/estoque" class="btn btn-success">
+                <a href="cadastrar/produto" class="btn btn-success">
                     Novo Registro
                 </a>
 
-                <a href="listar/estoque" class="btn btn-success">
+                <a href="listar/produto" class="btn btn-success">
                     Listar Registro
                 </a>
             </div>
@@ -29,12 +44,12 @@ if (!isset($page)) exit;
 
                     <div class="col-12 col-md-1">
                         <label for="id">ID:</label>
-                        <input type="number" name="id" id="id" readonly class="form-control" data-parsley-required-message="Preencha esse campo">
+                        <input type="number" name="id" id="id" readonly class="form-control" data-parsley-required-message="Preencha esse campo" value="<?= $id ?>">
                     </div>
 
                     <div class="col-12 col-md-6">
                     <label for="nome">Nome do Produto:</label>
-                    <input type="text" name="nome" id="nome" class="form-control" data-parsley-required-message="Preencha esse campo">
+                    <input type="text" name="nome" id="nome" class="form-control" value="<?= $nome ?>" data-parsley-required-message="Preencha esse campo">
                     </div>
                     
                     <div class="col-12 col-md-3">
@@ -64,12 +79,16 @@ if (!isset($page)) exit;
                             ?>
 
                         </select>
-
+                        <script>
+                            $(document).ready(function() {
+                                $("#categoria_id").val(<?= $categoria_id ?>);
+                            })
+                        </script>
                     </div>
 
                     <div class="col-12 col-md-2">
                         <label for="preco">Preço do Produto:</label>
-                        <input type="number" name="preco" id="preco" class="form-control" step="0.01" min="0" required data-parsley-required-message="Preencha esse campo">
+                        <input type="number" name="preco" id="preco" class="form-control" value="<?= $preco ?>" step="0.01" min="0" required data-parsley-required-message="Preencha esse campo">
                     </div>
 
 
@@ -80,12 +99,12 @@ if (!isset($page)) exit;
 
                     <div class="col-7 col-md-2">
                     <label for="marca">Marca do Produto:</label>
-                    <input type="text" name="marca" id="marca" class="form-control" data-parsley-required-message="Preencha esse campo">
+                    <input type="text" name="marca" id="marca" class="form-control" value="<?= $marca ?>" data-parsley-required-message="Preencha esse campo">
                     </div>
 
                     <div class="col-12 col-md-12">
                         <label for="descricao">Descrição do Produto:</label>
-                        <textarea name="descricao" id="descricao" class="form-control" data-parsley-required-message="Preencha esse campo"></textarea>
+                        <textarea name="descricao" id="descricao" class="form-control" value="" data-parsley-required-message="Preencha esse campo"><?= $descricao ?></textarea>
                     </div>
 
         </div>

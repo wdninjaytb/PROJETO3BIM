@@ -23,6 +23,8 @@
             redimensionarImagem($origem, 600, 800, 100);
         }
 
+        $arquivo = "{$arquivo}.jpg";
+
         if (empty($id)) {
              if (empty($_FILES["img"]["name"])) {
                 echo "<script>mensagem('Selecione um arquivo','error');</script>'";
