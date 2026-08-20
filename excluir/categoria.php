@@ -17,8 +17,8 @@ $consultaCategoria->execute();
 $dadosCategoria = $consultaCategoria->fetch(PDO::FETCH_OBJ);
 
 if (!empty($dadosCategoria->id)) {
-    echo "<script>mensagem('Não foi possível excluir, pois temos produtos cadastrados nessa categoria', 'error');</script>";
     $pdo->rollBack();
+    echo "<script>mensagem('Não foi possível excluir, pois temos produtos cadastrados nessa categoria', 'error', 'listar/categoria');</script>";
     exit;
 }
 
@@ -31,6 +31,7 @@ if ($consultaDelete->execute()) {
     echo "<script>mensagem('Registro Excluído', 'success', 'listar/categoria');</script>";
     exit;
 } else {
-    echo "<script>mensagem('Não foi possível excluir a categoria', 'error');</script>";
+    $pdo->rollBack();
+    echo "<script>mensagem('Não foi possível excluir a categoria', 'error', 'listar/categoria');</script>";
     exit;
 }

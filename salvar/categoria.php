@@ -11,6 +11,33 @@
             exit;
         }
 
+        if (empty($descricao)) {
+        echo "<script>mensagem('Preencha a descrição da categoria', 'error');</script>";
+        exit;
+        }
+
+        if (empty($id)) {
+            $sqlVerificar = "select id from categoria where nome = :nome limit 1";
+
+            $consultaVerificar = $pdo->prepare($sqlVerificar);
+            $consultaVerificar->bindParam(":nome", $nome);
+            $consultaVerificar->execute();
+        } else {
+            $sqlVerificar = "select id from categoria where nome = :nome and id != :id limit 1";
+
+            $consultaVerificar = $pdo->prepare($sqlVerificar);
+            $consultaVerificar->bindParam(":nome", $nome);
+            $consultaVerificar->bindParam(":id", $id);
+            $consultaVerificar->execute();
+        }
+
+        $categoriaExistente = $consultaVerificar->fetch(PDO::FETCH_OBJ);
+
+        if ($categoriaExistente) {
+            echo "<script>mensagem('Já existe uma categoria com esse nome', 'error', 'listar/categoria');</script>";
+            exit;
+        }
+
         if (empty($id)) {
 
             $sqlCadastro = "insert into categoria (nome, descricao ) values (:nome, :descricao)";
