@@ -165,9 +165,10 @@
 
 
     if ($pasta == "") {
-        echo "<div class='container mt-4'>
-            <h2>Bem-vindo ao Sistema Administrativo Kaeru</h2>
-          </div>";
+
+        $page = true;
+
+        require "pages/home.php";
     }
 
     else if ($pasta == "cadastrar") {
@@ -241,5 +242,6 @@
         ?>
 
     <script src="dist/produtos.js"></script>
+    <script src="dist/categorias.js"></script>
     </body>
     </html>

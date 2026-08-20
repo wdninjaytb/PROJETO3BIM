@@ -18,14 +18,12 @@ if (!empty($id)) {
 ?>
 
 <div class="container">
-    <div class="card shadow">
+    <div class="card shadow admin-card">
 
-        <div class="card-header">
-            <div class="float-start">
+        <div class="card-header d-flex justify-content-between align-items-center">
                 <h2>Cadastro de Produto</h2>
-            </div>
 
-            <div class="float-end">
+            <div class="d-flex gap-2">
                 <a href="cadastrar/produto" class="btn btn-success">
                     Novo Registro
                 </a>
@@ -49,7 +47,7 @@ if (!empty($id)) {
 
                     <div class="col-12 col-md-6">
                     <label for="nome">Nome do Produto:</label>
-                    <input type="text" name="nome" id="nome" class="form-control" value="<?= $nome ?>" data-parsley-required-message="Preencha esse campo">
+                    <input type="text" name="nome" id="nome" class="form-control" required value="<?= $nome ?>" data-parsley-required-message="Preencha esse campo">
                     </div>
                     
                     <div class="col-12 col-md-3">
@@ -99,7 +97,7 @@ if (!empty($id)) {
 
                     <div class="col-7 col-md-2">
                     <label for="marca">Marca do Produto:</label>
-                    <input type="text" name="marca" id="marca" class="form-control" value="<?= $marca ?>" data-parsley-required-message="Preencha esse campo">
+                    <input type="text" name="marca" id="marca" class="form-control" required value="<?= $marca ?>" required data-parsley-required-message="Preencha esse campo">
                     </div>
 
                     <div class="col-12 col-md-12">

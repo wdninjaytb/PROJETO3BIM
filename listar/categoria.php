@@ -3,14 +3,12 @@ if (!isset($page)) exit;
 ?>
 
 <div class="container pt-5 pb-5 mt-5">
-    <div class="card shadow">
+    <div class="card shadow admin-card">
 
-        <div class="card-header">
-            <div class="float-start">
+        <div class="card-header d-flex justify-content-between align-items-center">
                 <h2>Listagem de Categorias</h2>
-            </div>
 
-            <div class="float-end">
+            <div class="d-flex gap-2">
                 <a href="cadastrar/categoria" class="btn btn-success">
                     Novo Registro
                 </a>
@@ -22,14 +20,15 @@ if (!isset($page)) exit;
         </div>
 
         <div class="card-body">
-            <table class="table table-bordered table-striped">
+            <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle">
                 <thead>
                     <tr>
-                        <td>ID da Categoria</td>
-                        <td>Nome da Categoria</td>
-                        <td>Descricao da Categoria</td>
-                        <td>Status</td>
-                        <td>Opções</td>
+                        <th>ID da Categoria</th>
+                        <th>Nome da Categoria</th>
+                        <th>Descricao da Categoria</th>
+                        <th>Status</th>
+                        <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,12 +52,14 @@ if (!isset($page)) exit;
                                 </td>
 
                                 <td>
+                                    <div class="d-flex gap-2">
                                     <a href="cadastrar/categoria/<?= $dados->id ?>" class="btn btn-success">
                                         Editar
                                     </a>
                                     <a href="javascript:excluir(<?= $dados->id ?>)" class="btn btn-danger">
                                         Excluir
                                     </a>
+                                  </div>
                                 </td>
                             </tr>
                             <?php
@@ -66,6 +67,7 @@ if (!isset($page)) exit;
                     ?>
                 </tbody>
             </table>
+         </div>
             <script>
                 const switches = document.querySelectorAll(".form-check-input");
 

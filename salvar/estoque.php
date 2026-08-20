@@ -24,6 +24,29 @@
 
         if (empty($id)) {
 
+            $sqlVerificar = "select id from estoque where produto_id = :produto_id limit 1";
+
+            $consultaVerificar = $pdo->prepare($sqlVerificar);
+            $consultaVerificar->bindParam(":produto_id", $produto_id);
+            $consultaVerificar->execute();
+        } else {
+            $sqlVerificar = "select id from estoque where produto_id = :produto_id and id != :id limit 1";
+
+            $consultaVerificar = $pdo->prepare($sqlVerificar);
+            $consultaVerificar->bindParam(":produto_id", $produto_id);
+            $consultaVerificar->bindParam(":id", $id);
+            $consultaVerificar->execute();
+        }
+            $estoqueExistente = $consultaVerificar->fetch(PDO::FETCH_OBJ);
+
+            if ($estoqueExistente) {
+                echo "<script>mensagem('Esse produto já possui estoque cadastrado', 'error');</script>";
+                exit;
+            }
+
+            if (empty($id)) {
+
+
 
             $sqlCadastro = "insert into estoque (produto_id, quantidade) values (:produto_id, :quantidade)";
             $consultaCadastro = $pdo->prepare($sqlCadastro);
@@ -44,8 +67,8 @@
             echo "<script>mensagem('Registro salvo com sucesso', 'success', 'listar/estoque');</script>";
             exit;
         }
-
-    } else {
+        
+        }else {
         echo "<script>mensagem('Requisição inválida', 'error');</script>";
         exit;
     }

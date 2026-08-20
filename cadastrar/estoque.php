@@ -15,14 +15,12 @@
 ?>
 
 <div class="container cadastro-pequeno">
-    <div class="card shadow">
+    <div class="card shadow admin-card">
 
-        <div class="card-header">
-            <div class="float-start">
+        <div class="card-header d-flex justify-content-between align-items-center">
                 <h2>Cadastro de Estoque</h2>
-            </div>
 
-            <div class="float-end">
+            <div class="d-flex gap-2">
                 <a href="cadastrar/estoque" class="btn btn-success">
                     Novo Registro
                 </a>
@@ -44,7 +42,7 @@
                         <input type="number" name="id" id="id" readonly class="form-control" value="<?= $dadosEstoque->id ?? "" ?>"    >
                     </div>
 
-                    <div class="col-12 col-md-5">
+                    <div class="col-12 col-md-6">
                         <label for="produto_id">Produto:</label>
 
                         <select name="produto_id" id="produto_id" class="form-control" required data-parsley-required-message="Selecione um produto">
@@ -79,7 +77,7 @@
                     </div>
                     
 
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-5">
                         <label for="qntd">Quantidade em Estoque:</label>
 
                         <input type="number" name="qntd" id="qntd" class="form-control" min="0" required data-parsley-required-message="Preencha esse campo"
@@ -89,9 +87,9 @@
                 </div>
 
 
-             <div class="row mt-3">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success float-end">
+             <div class="row mt-4">
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success px-4">
                         Salvar
                     </button>
             </div>

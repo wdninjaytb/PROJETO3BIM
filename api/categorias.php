@@ -8,12 +8,12 @@ $conn = new PDO(
     ""
 );
 
-$sql = "select p.*, e.quantidade from produto p inner join estoque e on e.produto_id = p.id";
+$sql = "select * from categoria";
 
 $stmt = $conn->prepare($sql);
 
 $stmt->execute();
 
-$produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo json_encode($produtos);
+echo json_encode($categorias);

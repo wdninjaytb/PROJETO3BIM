@@ -16,14 +16,12 @@ if (!empty($id)) {
 ?>
 
 <div class="container">
-    <div class="card shadow">
+    <div class="card shadow admin-card">
 
-        <div class="card-header">
-            <div class="float-start">
+        <div class="card-header d-flex justify-content-between align-items-center">
                 <h2>Cadastro de Categoria</h2>
-            </div>
 
-            <div class="float-end">
+            <div class="d-flex gap-2">
                 <a href="cadastrar/categoria" class="btn btn-success">
                     Novo Registro
                 </a>
@@ -47,27 +45,24 @@ if (!empty($id)) {
 
                     <div class="col-12 col-md-6">
                     <label for="nome">Nome da Categoria:</label>
-                    <input type="text" name="nome" id="nome" class="form-control" data-parsley-required-message="Preencha esse campo" value="<?= $dadosCategoria->nome ?? "" ?>">
+                    <input type="text" name="nome" id="nome" class="form-control" required data-parsley-required-message="Preencha esse campo" value="<?= $dadosCategoria->nome ?? "" ?>">
                     </div>
 
                     </div>
 
                     <div class="col-12 col-md-12">
                         <label for="descricao">Descrição da Categoria:</label>
-                        <textarea name="descricao" id="descricao" class="form-control" data-parsley-required-message="Preencha esse campo"><?= $dadosCategoria->descricao ?? "" ?></textarea>
+                        <textarea name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Preencha esse campo"><?= $dadosCategoria->descricao ?? "" ?></textarea>
                     </div>
 
-        </div>
-
-                <div class="row mt-4 mb-3">
+                <div class="row mt-4">
                     <div class="col-12 d-flex justify-content-end pe-4">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success px-4">
                             Salvar
                     </button>
                 </div>
-        </div>
-            </form>
-
+            </div>
+          </form>
         </div>
     </div>
 </div>  

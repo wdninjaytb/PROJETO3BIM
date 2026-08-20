@@ -154,3 +154,117 @@ body {
         color: white;
     }
 }
+
+.dashboard-card {
+    border: none;
+    border-radius: 15px;
+    height: 100%;
+}
+
+.dashboard-card .card-body {
+    padding: 25px;
+}
+
+.dashboard-card h5 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.dashboard-card h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.dashboard-lista .card-header {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+}
+
+.dashboard-lista .card-header h4 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.dashboard-lista .card-body p {
+    margin-bottom: 10px;
+}
+
+.dashboard-destaque {
+    text-align: center;
+}
+
+.dashboard-titulo {
+    text-align: center;
+}
+
+.dashboard-titulo h2 {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.dashboard-titulo p {
+    margin: 0;
+    color: #666;
+}
+
+.item-ranking {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.item-ranking:last-child {
+    margin-bottom: 0;
+}
+
+.mensagem-estoque {
+    text-align: center;
+    color: #666;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.item-estoque-baixo {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.admin-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.admin-card .card-header {
+    padding: 20px 25px;
+    background-color: white;
+}
+
+.admin-card .card-body {
+    padding: 25px;
+}
+
+.admin-card .card-header h2 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.admin-card .card-body {
+    padding: 25px;
+}
+
+.admin-card .form-control {
+    border-radius: 8px;
+}
+
+.admin-card label {
+    margin-bottom: 6px;
+}

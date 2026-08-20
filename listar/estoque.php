@@ -3,7 +3,7 @@ if (!isset($page)) exit;
 ?>
 
 <div class="container pt-5 pb-5 mt-5">
-    <div class="card shadow">
+    <div class="card shadow admin-card">
 
         <div class="card-header">
             <div class="float-start">
@@ -25,12 +25,12 @@ if (!isset($page)) exit;
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <td>ID do Estoque</td>
-                        <td>ID do Produto</td>
-                        <td>Imagem do Produto</td>
-                        <td>Nome do Produto</td>
-                        <td>Quantidade</td>
-                        <td>Opções</td>
+                        <th>Imagem do Produto</th>
+                        <th>ID do Estoque</th>
+                        <th>ID do Produto</th>
+                        <th>Nome do Produto</th>
+                        <th>Quantidade</th>
+                        <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,19 +45,27 @@ if (!isset($page)) exit;
                         foreach ($dadosListar as $dados) {
                             ?>
                             <tr>
-                                <td><?= $dados->img ?></td>
+                                <td>
+                                    <?php if (!empty($dados->img)) { ?>
+                                        <img src="arquivos/<?= $dados->img ?>" alt="<?= $dados->produto ?>" class="imagem-produto">
+                                    <?php } else { ?>
+                                        <span>Sem imagem</span>
+                                    <?php } ?>
+                                </td>
                                 <td><?= $dados->id ?></td>
                                 <td><?= $dados->produto_id ?></td>
                                 <td><?= $dados->produto ?></td>
                                 <td><?= $dados->quantidade ?></td>
 
                                 <td>
+                                    <div class="d-flex gap-2">
                                     <a href="cadastrar/estoque/<?= $dados->id ?>" class="btn btn-success">
                                         Editar
                                     </a>
                                     <a href="javascript:excluir(<?= $dados->id ?>)" class="btn btn-danger">
                                         Excluir
                                     </a>
+                                 </div>
                                 </td>
                             </tr>
                             <?php
