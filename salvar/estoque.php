@@ -40,7 +40,7 @@
             $estoqueExistente = $consultaVerificar->fetch(PDO::FETCH_OBJ);
 
             if ($estoqueExistente) {
-                echo "<script>mensagem('Esse produto já possui estoque cadastrado', 'error');</script>";
+                echo "<script>mensagem('Esse produto já possui estoque cadastrado', 'error', 'listar/estoque');</script>";
                 exit;
             }
 

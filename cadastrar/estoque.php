@@ -80,8 +80,7 @@
                     <div class="col-12 col-md-5">
                         <label for="qntd">Quantidade em Estoque:</label>
 
-                        <input type="number" name="qntd" id="qntd" class="form-control" min="0" required data-parsley-required-message="Preencha esse campo"
-                        value="<?= $dadosEstoque->quantidade ?? "" ?>">
+                        <input type="number" name="qntd" id="qntd" class="form-control" min="0" required data-parsley-required-message="Preencha esse campo" data-parsley-min-message="A quantidade não pode ser negativa" value="<?= $dadosEstoque->quantidade ?? "" ?>">
                     </div>
 
                 </div>

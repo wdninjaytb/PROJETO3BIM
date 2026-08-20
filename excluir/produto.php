@@ -17,8 +17,8 @@ $consultaProduto->execute();
 $dadosProduto = $consultaProduto->fetch(PDO::FETCH_OBJ);
 
 if (!empty($dadosProduto->id)) {
-    echo "<script>mensagem('Não foi possível excluir, pois temos estoque desse produto cadastrado', 'error');</script>";
     $pdo->rollBack();
+    echo "<script>mensagem('Não foi possível excluir, pois temos estoque desse produto cadastrado', 'error', 'listar/produto');</script>";
     exit;
 }
 
@@ -31,7 +31,7 @@ if ($consultaDelete->execute()) {
     echo "<script>mensagem('Registro Excluído', 'success', 'listar/produto');</script>";
     exit;
 } else {
-    echo "<script>mensagem('Não foi possível excluir o produto', 'error');</script>";
+    echo "<script>mensagem('Não foi possível excluir o produto', 'error','listar/produto');</script>";
     $pdo->rollBack();
     exit;
 }

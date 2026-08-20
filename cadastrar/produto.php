@@ -86,7 +86,7 @@ if (!empty($id)) {
 
                     <div class="col-12 col-md-2">
                         <label for="preco">Preço do Produto:</label>
-                        <input type="number" name="preco" id="preco" class="form-control" value="<?= $preco ?>" step="0.01" min="0" required data-parsley-required-message="Preencha esse campo">
+                        <input type="number" name="preco" id="preco" class="form-control" value="<?= $preco ?>" step="0.01" min="0" required data-parsley-required-message="Preencha esse campo" data-parsley-min-message="O preço não pode ser negativo">
                     </div>
 
 

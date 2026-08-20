@@ -3,7 +3,7 @@ if (!isset($page)) exit;
 
 
 if (empty($id)) {
-    echo "<script>mensagem('Estoque não informado', 'error');</script>";
+    echo "<script>mensagem('Estoque não informado', 'error', 'listar/estoque');</script>";
     exit;
 }
 
@@ -18,6 +18,7 @@ if ($consultaDelete->execute()) {
     echo "<script>mensagem('Registro Excluído', 'success', 'listar/estoque');</script>";
     exit;
 } else {
-    echo "<script>mensagem('Não foi possível excluir o estoque', 'error');</script>";
+    echo "<script>mensagem('Não foi possível excluir o estoque', 'error','listar/estoque');</script>";
+    $pdo->rollBack();
     exit;
 }
